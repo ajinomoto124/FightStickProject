@@ -32,16 +32,43 @@ I found that the top acrylic sheet and wood panel fit the buttons so snug that I
 Each button was wired to the Arduino with ground on one side and a digital input pin on the other.  Since the buttons took up all of the digital input pins except one and the Sanwa JLF stick outputs digital signal, I wired the stick into the analog pins and read them as digital.  Hardware 30ohm resistors were wired into the Arduino's 5V and each stick pin to allow diagonal inputs to read correctly. 
 
 ##### Firmware-
-Since the Arduino USB can output to a computer as a keyboard, I realized I could output my controller input to take advantage of certain mechanics within Ultra Street Fighter IV for PC.
+Since the Arduino USB can output to a computer as a keyboard, I realized I could output my controller input to take advantage of certain mechanics within Ultra Street Fighter IV for PC.  In the Arduino INO, I set each button input to correspond to a keyboard letter output and directions on the stick to be mapped to w, s, left shift, and right shift (up, down, left, right).In Street Fighter I changed the game options for button settings to correspond to the keyboard keys that are pressed via the controller.  Additionally, I have dubbed the two rightmost buttons on the stick the "Attack Option" and "Defense Option" buttons.  When another of the six buttons is pressed in combination with one of these two buttons I programmed in a separate series of commands to execute (more explained below).  Click on the image below to be taken to the youtube video of the button demo.
 
-https://www.youtube.com/watch?v=aHHoGHcgK9k
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=DyG9BGCO_4Y
+" target="_blank"><img src="http://img.youtube.com/vi/DyG9BGCO_4Y/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
-#### Testing Methodology:
-After soldering all the buttons together, I plugged them into separate locations on the breadboard connected to the arduino.  I tested them for connectvity by holding one end of a multimeter to the grounded port of the arduino and one to the corresponding location while also pressing the button down.  If the multimeter detected a connection while the button was depressed, the connection was solid.  I used the same testing method for the switch's on state.
+The simplest thing I decided to take advantage of was the ability to send a sequence of inputs to the computer.  Instead of having to manually roll the stick in a quarter circle fashion (down, down-right, right) to get a hadouken (fireball) to execute, the user simply has to press the punch button and my Attack Option button.  Video link comparing the inputs is below.
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=mz11ff9VXdY
+" target="_blank"><img src="http://img.youtube.com/vi/mz11ff9VXdY/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+Similarly I used this to input both Evil Ryu's super (first video below) and a combo that includes a 1-frame link(second video below).  A 1-frame link in a Street Fighter combo requires a button input to take place exactly on a specific frame of the game.  Since the game itself runs at 60 fps, this means that the input requires precision to 1/60th a second or about 16.67 milliseconds.  To a normal player this can be difficult to pull off consistently, but my controller is precise to the millisecond and can hit this combo with ease.  The player just has to press the Heavy Punch button and the Attack Option button together to execute this combo.
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=4ihFlOGaQrM
+" target="_blank"><img src="http://img.youtube.com/vi/4ihFlOGaQrM/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=MLHcEO_MvnY
+" target="_blank"><img src="http://img.youtube.com/vi/MLHcEO_MvnY/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+
+Lastly, my fightstick implements 2 defensive options that make use of the games input leniency mechanics.  The fighting game community has coined the term option-selects for these maneuvers.  A short video describing this can be found [here](https://www.youtube.com/watch?v=aHHoGHcgK9k). Basically, if multiple conflicting inputs are pressed, the game decides one of them to override the others.  This can work out in the players favor in certain conditions.  The two option-selects I implement are the crouch-tech and an option-select sweep to catch backdashes (shown in linked video above).  Videos below:
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=XuaWWm_tqyo
+" target="_blank"><img src="http://img.youtube.com/vi/XuaWWm_tqyo/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=n4E-OgiGngQ
+" target="_blank"><img src="http://img.youtube.com/vi/n4E-OgiGngQ/0.jpg" 
+alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 #### Results and Discussion
-In order to comfortably be able to play a first person shooter like quake and still have the street fighter style buttons, the nintendo 64 style layout was necessary.  However, given more time, I would have probably tried to incorporate the third handle in a more smooth and form-fitting manner.
+Obviously this stick with its firmware modifications would not be allowed in competitive play.  However, I found it to be an interesting exercise and demonstration of the arduino's capabilities and the ability to take advantage of the current mechanics in Street Fighter.  Modifications aside, the fightstick functions as a very capable controller with no noticeable input lag.  In fact, in the heat of a match, I found myself forgetting that I was not using my other more professionally made fightstick.  With help from a classmate I found I was able to translate the inputs through the USB HID so that my fightstick was read as a controller on my PS3 and I was able to play normally.
 
 #### Conclusions
-Time spend on lab: about 6 hours.
-Buttons a switch and two control sticks were attached to a wooden board as a make-shift controller.  Learning how to solder and making mistakes along the way was probably the most time consuming part of this lab.  In the future, it might be better to ensure that everyone in the class can solder properly.
+Given more time, I would have applied a wood finish to the outer walls of the stick.  I still plan to do this when I have the time.  Additionally, I would like to replace the Arduino entirely with a PS360+ PCB so I can use the fightstick on consoles besides PS3.
+
+#### Special Thanks
+I would like to thank Professor Josef Spjut at Harvey Mudd for allowing me to do this project for class as I would not have had the time to do this if it was not school work.
+
+I would also like to thank Tyler Smallwood (Harvey Mudd class of 2017) for his help as a shop proctor and generally getting me started and set up with whatever tools I needed.
